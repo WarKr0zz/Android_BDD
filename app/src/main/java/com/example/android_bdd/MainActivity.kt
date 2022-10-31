@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         printName.setOnClickListener{
 
-
+            MySQLConnexion.connection()
             val db = DBHelper(this, null)
 
 
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             Name.append(cursor.getString(cursor.getColumnIndex(DBHelper.NAME_COl)) + "\n")
             Age.append(cursor.getString(cursor.getColumnIndex(DBHelper.AGE_COL)) + "\n")
 
-            // on va effecteur cela tant qu'il y aura des valeur 
+            // on va effecteur cela tant qu'il y aura des valeur
             while(cursor.moveToNext()){
                 Name.append(cursor.getString(cursor.getColumnIndex(DBHelper.NAME_COl)) + "\n")
                 Age.append(cursor.getString(cursor.getColumnIndex(DBHelper.AGE_COL)) + "\n")

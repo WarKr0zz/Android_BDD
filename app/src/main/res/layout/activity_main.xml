@@ -63,7 +63,8 @@
             android:text="Nom\n\n"
             android:textSize="22sp"
             android:padding="10sp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:layout_marginLeft="100dp"/>
 
         <!-- Text view to get all ages -->
         <TextView
