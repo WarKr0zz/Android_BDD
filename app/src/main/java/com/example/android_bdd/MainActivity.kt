@@ -26,10 +26,6 @@ class MainActivity : AppCompatActivity() {
         Name = findViewById(R.id.Name)
 
 
-
-
-        // below code is to add on click
-        // listener to our add name button
         addName.setOnClickListener{
 
             // below we have created
@@ -37,51 +33,42 @@ class MainActivity : AppCompatActivity() {
             // and passed context to it
             val db = DBHelper(this, null)
 
-            // creating variables for values
-            // in name and age edit texts
+            // On créé nos variables pour envoyer a la base de donnée
             val name = enterName.text.toString()
             val age = enterPrenom.text.toString()
 
-            // calling method to add
-            // name to our database
+            // On utilise la méthode addName depuis la classe DBHelper en passant nos variable en parametre
             db.addName(name, age)
 
-            // Toast to message on the screen
+            // On informe a l'utilisateur que l'ajout a été effectué
             Toast.makeText(this, name + " added to database", Toast.LENGTH_LONG).show()
 
-            // at last, clearing edit texts
+            // Enfin on renitialise l'interieur des edit box
             enterName.text.clear()
             enterPrenom.text.clear()
         }
 
-        // below code is to add on  click
-        // listener to our print name button
+
         printName.setOnClickListener{
 
-            // creating a DBHelper class
-            // and passing context to it
+
             val db = DBHelper(this, null)
 
-            // below is the variable for cursor
-            // we have called method to get
-            // all names from our database
-            // and add to name text view
+
             val cursor = db.getName()
 
-            // moving the cursor to first position and
-            // appending value in the text view
+
             cursor!!.moveToFirst()
             Name.append(cursor.getString(cursor.getColumnIndex(DBHelper.NAME_COl)) + "\n")
             Age.append(cursor.getString(cursor.getColumnIndex(DBHelper.AGE_COL)) + "\n")
 
-            // moving our cursor to next
-            // position and appending values
+            // on va effecteur cela tant qu'il y aura des valeur 
             while(cursor.moveToNext()){
                 Name.append(cursor.getString(cursor.getColumnIndex(DBHelper.NAME_COl)) + "\n")
                 Age.append(cursor.getString(cursor.getColumnIndex(DBHelper.AGE_COL)) + "\n")
             }
 
-            // at last we close our cursor
+
             cursor.close()
         }
     }
